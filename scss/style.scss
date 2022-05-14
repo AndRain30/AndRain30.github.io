@@ -25,6 +25,9 @@ body {
         font-size: 34px;
         padding: 10px;
         flex: 0 0 200px;
+        @media (max-width: 992px) {
+            font-size: 30px;
+        }
     }
 	&__links {
         height: 80px;
@@ -37,7 +40,10 @@ body {
         color: rgb(210, 209, 209);
         text-decoration: none;
         font-size: 30px;
-        padding: 10px 25px  ;
+        padding: 10px 25px;
+        @media (max-width: 992px) {
+            font-size: 26px;
+        }
      }
 }
 .main {
@@ -50,6 +56,9 @@ body {
 	&__container {
         width: 1100px;
         margin: 0 auto;
+        @media (max-width: 992px) {
+            width: 850px;
+        }
      }
     &__title {
         max-width: 400px;
@@ -63,6 +72,10 @@ body {
         text-align: center;
         border-radius: 21px;
         color: rgb(25, 20, 20);
+        @media (max-width: 992px) {
+            max-width: 300px;
+            font-size: 30px;
+        }
     }
     &__list {
     }
@@ -77,6 +90,10 @@ body {
         padding: 7px;
         margin-bottom: 15px;
         position: relative;
+        @media (max-width: 992px) {
+            width: 867px;
+            font-size: 21px;
+        }
      }
     &__arrow {
             &:after {
@@ -88,7 +105,12 @@ body {
                 position: absolute;
                 top: 5px;
                 right:0;
-                cursor: pointer;    
+                cursor: pointer;
+                @media (max-width: 992px) {
+                    background-size: 40px 25px;
+                    width: 40px;
+                    height: 25px;
+                }    
         }
     }
 	&__antwort {
@@ -98,6 +120,9 @@ body {
         height: 0px;
         overflow: hidden;
         transition: 0.5s ease-in;
+        @media (max-width: 992px) {
+            width: 867px;
+        }
         p {
             margin-bottom: 15px;
             &:last-child {
@@ -106,6 +131,9 @@ body {
         }
         &:last-child {
             margin-bottom: 95px;
+            @media (max-width: 992px) {
+                margin-bottom: 65px;
+            }
         }
      }
      
@@ -123,8 +151,15 @@ body {
         height: auto;
         margin-bottom: 15px;
         overflow: visible;
+        @media (max-width: 992px) {
+            width: 867px;
+            font-size: 15px;
+        }
         &:last-child {
             margin-bottom: 95px;
+            @media (max-width: 992px) {
+                margin-bottom: 65px;
+            }
         }
      }
 }
@@ -132,11 +167,17 @@ body {
     flex: 0 0 auto;
     height: 85px;
     text-align: center;
-    font-size: 25px;
+    @media (max-width: 992px) {
+        height: 75px;
+    }
     img {
         margin: 0 15px 0 0;
         width: 50px;
         height: 50px;
+        @media (max-width: 992px) {
+            width: 40px;
+            height: 40px;
+        }
         &:last-child {
             margin-left: 15px;
         }
@@ -155,10 +196,18 @@ body {
         margin-bottom: 90px;
         align-items: center;
         border: 1.5px solid black;
+        @media (max-width: 992px) {
+            width: 817px;
+            min-height: 251px;
+            margin-bottom: 55px;
+        }
      }
 	&__checks {
         width: 900px;
         display: flex;
+        @media (max-width: 992px) {
+            width: 770px;
+        }
      }
 	&__check-gray {
         width: 38px;
@@ -167,6 +216,11 @@ body {
         background: #C4C4C4;
         border: 0.5px solid rgba(0, 0, 0, 0.41);
         margin: 25px 10px 25px 10px;
+        @media (max-width: 992px) {
+            width: 770px;
+            width: 34px;
+            height: 34px;
+        }
      }
 	&__check-green { }
 	&__check-red { }
@@ -178,6 +232,11 @@ body {
         border: solid black 1.5px;
         font-size: 24px;
         background-color: rgba(240, 246, 251, 0.935);
+        @media (max-width: 992px) {
+            width: 720px;
+            font-size: 22px;
+            padding: 21px;
+        }
      }
 	&__antworts {
         text-align: left;
@@ -194,6 +253,11 @@ body {
         background-color: rgba(240, 246, 251, 0.935);
         border: 1px solid black;
         cursor: pointer;
+        @media (max-width: 992px) {
+            width: 620px;
+            font-size: 17px;
+            padding: 13px;
+        }
         &:last-child{
             margin: 0;
         }
@@ -202,6 +266,9 @@ body {
 	&__antwort-green { }
 	&__buttons {
         margin-bottom: 55px;
+        @media (max-width: 992px) {
+            margin-bottom: 35px;
+        }
      }
 	&__button-confirm {
         padding: 14px 68.5px;
@@ -210,6 +277,11 @@ body {
         border: 1px solid black;
         box-shadow: 4px 6px 4px rgba(0, 0, 0, 0.25);
         background: rgba(68, 233, 255, 0.93);
+        @media (max-width: 992px) {
+            font-size: 18px;
+            margin-right: 30px;
+            padding: 14px 65px;
+        }
         &:active {
             box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.25);
             transform: translateX(2px);
@@ -224,6 +296,11 @@ body {
         box-shadow: 4px 6px 4px rgba(0, 0, 0, 0.25);
         background: #BBBBB7;
         color: rgba(0, 0, 0, 0.56);
+        @media (max-width: 992px) {
+            font-size: 18px;
+            margin-left: 30px;
+            padding: 14px 65px;
+        }
         &:active {
             box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.25);
             transform: translateX(2px);
