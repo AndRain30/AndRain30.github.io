@@ -51,6 +51,9 @@ body {
         display: flex;
         align-items: center;
         justify-content: flex-end;
+        @media (max-width: 710px) {
+           
+        }
      }
 	&__link {
         color: rgb(210, 209, 209);
@@ -80,6 +83,7 @@ body {
         height: 26px;
         position: relative;
         display: none;
+        cursor: pointer;
         @media (max-width: 710px) {
             display: block;
             padding: 0 10px;
@@ -94,7 +98,7 @@ body {
         }
         &_slash2 {
             position: absolute;
-            top: 13px;
+            top: 12.5px;
             left: 0;
             background-color: rgb(254, 254, 254);
             width: 28px;
@@ -222,6 +226,7 @@ body {
 ///////////////// ниже викторина
 .test {
 	&__container {
+        border-radius: 5px;
         width: 1000px;
         margin: 0 auto;
         min-height: 551px;
@@ -255,6 +260,7 @@ body {
         border: solid black 1.5px;
         font-size: 24px;
         background-color: rgba(240, 246, 251, 0.935);
+        border-radius: 5px;
      }
 	&__antworts {
         text-align: left;
@@ -271,12 +277,20 @@ body {
         background-color: rgba(240, 246, 251, 0.935);
         border: 1px solid black;
         cursor: pointer;
+        border-radius: 5px;
         &:last-child{
             margin: 0;
         }
     }
-	&__antwort-red { }
-	&__antwort-green { }
+	&__antwort-red {
+        background-color: rgb(225, 52, 52);
+     }
+    &__antwort-gray { 
+        background-color: rgb(193, 192, 192);
+    }
+	&__antwort-green { 
+        background-color: rgb(64, 182, 64);
+    }
 	&__buttons {
         margin-bottom: 55px;
      }
@@ -287,6 +301,7 @@ body {
         border: 1px solid black;
         box-shadow: 4px 6px 4px rgba(0, 0, 0, 0.25);
         background: rgba(68, 233, 255, 0.93);
+        border-radius: 5px;
         &:active {
             box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.25);
             transform: translateX(2px);
@@ -301,12 +316,17 @@ body {
         box-shadow: 4px 6px 4px rgba(0, 0, 0, 0.25);
         background: #BBBBB7;
         color: rgba(0, 0, 0, 0.56);
+        border-radius: 5px;
+     }
+	&__button-next-red {
+        background-color: rgb(225, 52, 52);
+     }
+	&__button-next-green {
+        background-color: rgb(64, 182, 64);
         &:active {
             box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.25);
             transform: translateX(2px);
             transform: translateY(2px);
         }
      }
-	&__button-next-red { }
-	&__button-next-green { }
 }

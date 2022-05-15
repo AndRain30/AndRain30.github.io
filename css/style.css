@@ -160,6 +160,7 @@ body {
   height: 26px;
   position: relative;
   display: none;
+  cursor: pointer;
 }
 
 @media (max-width: 710px) {
@@ -180,7 +181,7 @@ body {
 
 .menu__burger_slash2 {
   position: absolute;
-  top: 13px;
+  top: 12.5px;
   left: 0;
   background-color: #fefefe;
   width: 28px;
@@ -314,6 +315,7 @@ body {
 }
 
 .test__container {
+  border-radius: 5px;
   width: 1000px;
   margin: 0 auto;
   min-height: 551px;
@@ -348,6 +350,7 @@ body {
   border: solid black 1.5px;
   font-size: 24px;
   background-color: rgba(240, 246, 251, 0.935);
+  border-radius: 5px;
 }
 
 .test__antworts {
@@ -366,10 +369,23 @@ body {
   background-color: rgba(240, 246, 251, 0.935);
   border: 1px solid black;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 .test__antwort:last-child {
   margin: 0;
+}
+
+.test__antwort-red {
+  background-color: #e13434;
+}
+
+.test__antwort-gray {
+  background-color: #c1c0c0;
+}
+
+.test__antwort-green {
+  background-color: #40b640;
 }
 
 .test__buttons {
@@ -383,6 +399,7 @@ body {
   border: 1px solid black;
   box-shadow: 4px 6px 4px rgba(0, 0, 0, 0.25);
   background: rgba(68, 233, 255, 0.93);
+  border-radius: 5px;
 }
 
 .test__button-confirm:active {
@@ -399,9 +416,18 @@ body {
   box-shadow: 4px 6px 4px rgba(0, 0, 0, 0.25);
   background: #BBBBB7;
   color: rgba(0, 0, 0, 0.56);
+  border-radius: 5px;
 }
 
-.test__button-next:active {
+.test__button-next-red {
+  background-color: #e13434;
+}
+
+.test__button-next-green {
+  background-color: #40b640;
+}
+
+.test__button-next-green:active {
   box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.25);
   transform: translateX(2px);
   transform: translateY(2px);
