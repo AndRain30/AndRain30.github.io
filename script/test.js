@@ -1,15 +1,43 @@
-const answorsTest = ['В каком году вышел ES6?', 'Как называется стандарт, описывающий спецификацию JS?', 'Уберите из вариантов то, что не подходит Javascript-у.'];
+const answorsTest = [
+    'В каком году вышел ES6?', 
+    'Как называется стандарт, описывающий спецификацию JS?', 
+    'Уберите из вариантов то, что не подходит Javascript-у.',
+];
 
-const antwortTest1 = ['В 2015 году', 'ECMA-124', 'Однопоточный'];
-const antwortTest2 = ['В 2006 году', 'ECMA-262', 'Прототипное программирование'];
-const antwortTest3 = ['В 2019 году', 'ECMAES-6', 'Автоматическое управление памятью'];
-const antwortTest4 = ['В 2016 году', 'ECMAJs-2015', 'Динамическая типизация'];
+const antwortTest1 = [
+    'В 2015 году', 
+    'ECMA-124', 
+    'Однопоточный',
+];
+const antwortTest2 = [
+    'В 2006 году', 
+    'ECMA-262', 
+    'Прототипное программирование',
+];
+const antwortTest3 = [
+    'В 2019 году', 
+    'ECMAES-6', 
+    'Автоматическое управление памятью',
+];
+const antwortTest4 = [
+    'В 2016 году', 
+    'ECMAJs-2015', 
+    'Динамическая типизация',
+];
+
+
 
 const answorTest = document.querySelector('.answor');
 const elemAntwort1 = document.querySelector('.antwort1');
 const elemAntwort2 = document.querySelector('.antwort2');
 const elemAntwort3 = document.querySelector('.antwort3');
 const elemAntwort4 = document.querySelector('.antwort4');
+
+const antwortRightId = {
+    antwort0 :() => elemAntwort1.id = 'yes',
+    antwort1 :() => elemAntwort2.id = 'yes',
+    antwort2 :() => elemAntwort1.id = 'yes',
+};
 
 const elemAntworts = document.querySelector('.test__antworts');
 
@@ -21,7 +49,7 @@ const checks = document.querySelector('.test__checks');
 answorTest.textContent = answorsTest[0];
 
 elemAntwort1.textContent = antwortTest1[0];
-elemAntwort1.id = 'yes';
+antwortRightId['antwort' + 0]();
 elemAntwort2.textContent = antwortTest2[0];
 elemAntwort3.textContent = antwortTest3[0];
 elemAntwort4.textContent = antwortTest4[0];
@@ -45,7 +73,8 @@ for (let i = 0; i < elemAntworts.children.length; i++) {
 
 
 btnConfirm.addEventListener('click', () => {
-    for (let i = 0; i < elemAntworts.children.length; i++) {
+    let i = 0;
+    while (i < elemAntworts.children.length) {
         if (elemAntworts.children[i].id == 'yes' && !elemAntworts.children[i].getAttribute('checkid')) {
             alert('Вы не выбрали вариант');
             break;
@@ -54,22 +83,29 @@ btnConfirm.addEventListener('click', () => {
             elemAntworts.children[i].classList.add('test__antwort-green');
             btnNext.classList.add('test__button-next-green');
             btnNext.id = 'yes';
-       } else if (elemAntworts.children[i].getAttribute('checkid') == 'yes' && elemAntworts.children[i].id == '') {
+            elemAntworts.children[i].removeAttribute('id');
+       } else if (elemAntworts.children[i].getAttribute('checkid') == 'yes' && elemAntworts.children[i].id == '' || elemAntworts.children[i].getAttribute('checkid') == 'no' && elemAntworts.children[i].id == '') {
             elemAntworts.children[i].classList.add('test__antwort-red');
        } else if (elemAntworts.children[i].getAttribute('checkid') == 'none' && elemAntworts.children[i].id == '') {
             elemAntworts.children[i].classList.add('test__antwort-gray');
-       } 
+       }
+       i++;
+    }
+    if (num == answorsTest.length - 1) {
+        btnNext.textContent = 'Результат';
     }
 })
 
 btnNext.addEventListener('click', () => {
-
     if (btnNext.id) {
         num += 1;
+        btnNext.removeAttribute('id');
+    }
+    if (num < answorsTest.length) {
         answorTest.textContent = answorsTest[num];
 
         elemAntwort1.textContent = antwortTest1[num];
-        elemAntwort1.id = 'yes';
+        antwortRightId['antwort' + num]();
         elemAntwort2.textContent = antwortTest2[num];
         elemAntwort3.textContent = antwortTest3[num];
         elemAntwort4.textContent = antwortTest4[num];
@@ -79,6 +115,5 @@ btnNext.addEventListener('click', () => {
            elemAntworts.children[i].classList.remove('test__antwort-green');
            elemAntworts.children[i].removeAttribute('checkid');
            } 
-        }
-        
+        } 
 })
