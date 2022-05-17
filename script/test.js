@@ -1,119 +1,147 @@
+
 const answorsTest = [
     'В каком году вышел ES6?', 
     'Как называется стандарт, описывающий спецификацию JS?', 
-    'Уберите из вариантов то, что не подходит Javascript-у.',
+    'Уберите из вариантов то, что не подходит Javascript-у.'
 ];
 
-const antwortTest1 = [
-    'В 2015 году', 
-    'ECMA-124', 
-    'Однопоточный',
-];
-const antwortTest2 = [
-    'В 2006 году', 
-    'ECMA-262', 
-    'Прототипное программирование',
-];
-const antwortTest3 = [
-    'В 2019 году', 
-    'ECMAES-6', 
-    'Автоматическое управление памятью',
-];
-const antwortTest4 = [
-    'В 2016 году', 
-    'ECMAJs-2015', 
-    'Динамическая типизация',
-];
+const antTest1 = [ { ant: 'В 2015 году', id: 1}, {ant: 'ECMA-124', id: 0}, {ant: 'Однопоточный', id: 1} ];
+const antTest2 = [ { ant: 'В 2006 году', id: 0}, {ant: 'ECMA-262', id: 1}, {ant: 'Прототипное программирование', id: 0} ];
+const antTest3 = [ { ant: 'В 2019 году', id: 0}, {ant: 'ECMAES-6', id: 0}, {ant: 'Автоматическое управление памятью', id: 0} ];
+const antTest4 = [ { ant: 'В 2016 году', id: 0}, {ant: 'ECMAJs-2015', id: 0}, {ant: 'Динамическая типизация', id: 0} ];
 
 
-
+let numOfQuestion = 0;
 const answorTest = document.querySelector('.answor');
 const elemAntwort1 = document.querySelector('.antwort1');
 const elemAntwort2 = document.querySelector('.antwort2');
 const elemAntwort3 = document.querySelector('.antwort3');
 const elemAntwort4 = document.querySelector('.antwort4');
 
-const antwortRightId = {
-    antwort0 :() => elemAntwort1.id = 'yes',
-    antwort1 :() => elemAntwort2.id = 'yes',
-    antwort2 :() => elemAntwort1.id = 'yes',
-};
 
 const elemAntworts = document.querySelector('.test__antworts');
 
 const btnConfirm = document.querySelector('.test__button-confirm');
-const btnNext = document.querySelector('.test__button-next');
+const btnNext = document.querySelector('.test__button-gray');
 
 const checks = document.querySelector('.test__checks');
+let numChecks = 0;
+let allChecks = antTest1.length;
 
-answorTest.textContent = answorsTest[0];
+function addTest () {
 
-elemAntwort1.textContent = antwortTest1[0];
-antwortRightId['antwort' + 0]();
-elemAntwort2.textContent = antwortTest2[0];
-elemAntwort3.textContent = antwortTest3[0];
-elemAntwort4.textContent = antwortTest4[0];
+    for (let i = 0; i < antTest1.length; i++) {
+        checks.insertAdjacentHTML('afterbegin', '<div class = "test__check-gray"></div>')
+    }
+    answorTest.textContent = answorsTest[0];
+    elemAntwort1.textContent = antTest1[0].ant;
+    elemAntwort2.textContent = antTest2[0].ant;
+    elemAntwort3.textContent = antTest3[0].ant;
+    elemAntwort4.textContent = antTest4[0].ant;
 
-let num = 0;  
+    elemAntwort1.id = antTest1[0].id;
+    elemAntwort2.id = antTest2[0].id;
+    elemAntwort3.id = antTest3[0].id;
+    elemAntwort4.id = antTest4[0].id;
+
+    elemAntwort1.setAttribute('check-id', 0);
+    elemAntwort2.setAttribute('check-id', 0);
+    elemAntwort3.setAttribute('check-id', 0);
+    elemAntwort4.setAttribute('check-id', 0);
+}
+
+addTest();
 
 for (let i = 0; i < elemAntworts.children.length; i++) {
     elemAntworts.children[i].addEventListener('click', () => {
-        if (elemAntworts.children[i].getAttribute('checkid') == 'yes') {
-            elemAntworts.children[i].setAttribute('checkid', 'no');
-        } else {
+        if (elemAntworts.children[i].getAttribute('check-id') == 1) {
             for (let j = 0; j < elemAntworts.children.length; j++) {
-                elemAntworts.children[j].setAttribute('checkid', 'none');
+                elemAntworts.children[j].setAttribute('check-id', 0);
             }
-        elemAntworts.children[i].setAttribute('checkid', 'yes');
+            elemAntworts.children[i].classList.remove('test__antwort-picked');
+        } else {
+        for (let j = 0; j < elemAntworts.children.length; j++) {
+            elemAntworts.children[j].removeAttribute('check-id');
+            elemAntworts.children[j].classList.remove('test__antwort-picked');
         }
-        
+        elemAntworts.children[i].classList.add('test__antwort-picked');
+        elemAntworts.children[i].setAttribute('check-id', 1);
+    }
     })
-    
 }
 
-
-btnConfirm.addEventListener('click', () => {
-    let i = 0;
-    while (i < elemAntworts.children.length) {
-        if (elemAntworts.children[i].id == 'yes' && !elemAntworts.children[i].getAttribute('checkid')) {
-            alert('Вы не выбрали вариант');
+function showAntworts () {
+        for (let i = 0; i < elemAntworts.children.length; i++) {
+            if (elemAntworts.children[i].getAttribute('check-id') == 0) {
+            alert("Не выбран ответ");
             break;
-        }
-        if (elemAntworts.children[i].id == elemAntworts.children[i].getAttribute('checkid') || elemAntworts.children[i].id == 'yes') {
+        } else if (elemAntworts.children[i].id == 1 && elemAntworts.children[i].id == elemAntworts.children[i].getAttribute('check-id')) {
+            for (let j = 0; j < elemAntworts.children.length; j++) {
+                elemAntworts.children[j].classList.add('test__antwort-gray');
+            }
             elemAntworts.children[i].classList.add('test__antwort-green');
             btnNext.classList.add('test__button-next-green');
-            btnNext.id = 'yes';
-            elemAntworts.children[i].removeAttribute('id');
-       } else if (elemAntworts.children[i].getAttribute('checkid') == 'yes' && elemAntworts.children[i].id == '' || elemAntworts.children[i].getAttribute('checkid') == 'no' && elemAntworts.children[i].id == '') {
+            btnNext.addEventListener('click', showNextQuestions);
+            checks.children[numChecks].classList.add('test__check-green');
+            checks.children[numChecks].id = 1;
+            ++numChecks;
+            btnConfirm.classList.remove('test__button-confirm');
+            btnConfirm.classList.add('test__button-confirm-gray');
+            btnConfirm.removeEventListener('click', showAntworts)
+            break;
+        } else if (elemAntworts.children[i].id == 1) {
+            elemAntworts.children[i].classList.add('test__antwort-green');
+        } else if (elemAntworts.children[i].id == 0 && elemAntworts.children[i].getAttribute('check-id') == 1) {
             elemAntworts.children[i].classList.add('test__antwort-red');
-       } else if (elemAntworts.children[i].getAttribute('checkid') == 'none' && elemAntworts.children[i].id == '') {
+            btnNext.classList.add('test__button-next-green');
+            btnNext.addEventListener('click', showNextQuestions);
+            checks.children[numChecks].classList.add('test__check-red');
+            checks.children[numChecks].id = 1;
+            ++numChecks;
+            btnConfirm.classList.remove('test__button-confirm');
+            btnConfirm.classList.add('test__button-confirm-gray');
+            btnConfirm.removeEventListener('click', showAntworts);
+        } else if (elemAntworts.children[i].id == 0) {
             elemAntworts.children[i].classList.add('test__antwort-gray');
-       }
-       i++;
+        } 
     }
-    if (num == answorsTest.length - 1) {
+    if (numChecks == antTest1.length) {
         btnNext.textContent = 'Результат';
     }
-})
+}
 
-btnNext.addEventListener('click', () => {
-    if (btnNext.id) {
-        num += 1;
-        btnNext.removeAttribute('id');
-    }
-    if (num < answorsTest.length) {
-        answorTest.textContent = answorsTest[num];
+btnConfirm.addEventListener('click', showAntworts)
 
-        elemAntwort1.textContent = antwortTest1[num];
-        antwortRightId['antwort' + num]();
-        elemAntwort2.textContent = antwortTest2[num];
-        elemAntwort3.textContent = antwortTest3[num];
-        elemAntwort4.textContent = antwortTest4[num];
+function showNextQuestions () {
+    if (numOfQuestion <= antTest1.length - 2) {
+        numOfQuestion++;
+        answorTest.textContent = answorsTest[numOfQuestion];
+        elemAntwort1.textContent = antTest1[numOfQuestion].ant;
+        elemAntwort2.textContent = antTest2[numOfQuestion].ant;
+        elemAntwort3.textContent = antTest3[numOfQuestion].ant;
+        elemAntwort4.textContent = antTest4[numOfQuestion].ant;
+    
+        elemAntwort1.id = antTest1[numOfQuestion].id;
+        elemAntwort2.id = antTest2[numOfQuestion].id;
+        elemAntwort3.id = antTest3[numOfQuestion].id;
+        elemAntwort4.id = antTest4[numOfQuestion].id;
+    
+        elemAntwort1.setAttribute('check-id', 0);
+        elemAntwort2.setAttribute('check-id', 0);
+        elemAntwort3.setAttribute('check-id', 0);
+        elemAntwort4.setAttribute('check-id', 0);
+
         for (let i = 0; i < elemAntworts.children.length; i++) {
-           elemAntworts.children[i].classList.remove('test__antwort-gray');
-           elemAntworts.children[i].classList.remove('test__antwort-red');
-           elemAntworts.children[i].classList.remove('test__antwort-green');
-           elemAntworts.children[i].removeAttribute('checkid');
-           } 
-        } 
-})
+            elemAntworts.children[i].classList.remove('test__antwort-green', 'test__antwort-red','test__antwort-gray','test__antwort-picked');
+            
+        }
+
+        btnConfirm.addEventListener('click', showAntworts);
+        btnConfirm.classList.remove('test__button-confirm-gray');
+        btnConfirm.classList.add('test__button-confirm');
+
+        btnNext.classList.remove('test__button-next-green');
+        btnNext.removeEventListener('click', showNextQuestions);
+    }
+}
+btnNext.addEventListener('click', showNextQuestions);

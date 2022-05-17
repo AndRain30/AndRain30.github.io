@@ -250,8 +250,12 @@ body {
         border: 0.5px solid rgba(0, 0, 0, 0.41);
         margin: 25px 10px 25px 10px;
      }
-	&__check-green { }
-	&__check-red { }
+	.test__check-green {
+        background-color: rgb(64, 182, 64);
+     }
+	&__check-red {
+        background-color: rgb(225, 52, 52);
+     }
 	&__answor {
         padding: 25px;
         margin: 0 0 35px 0;
@@ -282,6 +286,9 @@ body {
             margin: 0;
         }
     }
+    &__antwort-picked { 
+        background: rgba(68, 233, 255, 0.93);
+    }
 	&__antwort-red {
         background-color: rgb(225, 52, 52);
      }
@@ -308,8 +315,18 @@ body {
             transform: translateY(2px);
         }
      }
-	&__button-next {
-        padding: 14px 70px;
+     &__button-confirm-gray {
+        padding: 14px 68.5px;
+        font-size: 21px;
+        margin-right: 40px;
+        border: 1px solid black;
+        box-shadow: 4px 6px 4px rgba(0, 0, 0, 0.25);
+        background: #BBBBB7;
+        color: rgba(0, 0, 0, 0.56);
+        border-radius: 5px;
+     }
+	&__button-gray {
+        padding: 14px 68.5px;
         font-size: 21px;
         margin-left: 40px;
         border: 1px solid black;
@@ -318,11 +335,10 @@ body {
         color: rgba(0, 0, 0, 0.56);
         border-radius: 5px;
      }
-	&__button-next-red {
-        background-color: rgb(225, 52, 52);
-     }
+	
 	&__button-next-green {
         background-color: rgb(64, 182, 64);
+        color: rgb(0, 0, 0);
         &:active {
             box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.25);
             transform: translateX(2px);

@@ -342,6 +342,14 @@ body {
   margin: 25px 10px 25px 10px;
 }
 
+.test .test__check-green {
+  background-color: #40b640;
+}
+
+.test__check-red {
+  background-color: #e13434;
+}
+
 .test__answor {
   padding: 25px;
   margin: 0 0 35px 0;
@@ -376,6 +384,10 @@ body {
   margin: 0;
 }
 
+.test__antwort-picked {
+  background: rgba(68, 233, 255, 0.93);
+}
+
 .test__antwort-red {
   background-color: #e13434;
 }
@@ -408,8 +420,19 @@ body {
   transform: translateY(2px);
 }
 
-.test__button-next {
-  padding: 14px 70px;
+.test__button-confirm-gray {
+  padding: 14px 68.5px;
+  font-size: 21px;
+  margin-right: 40px;
+  border: 1px solid black;
+  box-shadow: 4px 6px 4px rgba(0, 0, 0, 0.25);
+  background: #BBBBB7;
+  color: rgba(0, 0, 0, 0.56);
+  border-radius: 5px;
+}
+
+.test__button-gray {
+  padding: 14px 68.5px;
   font-size: 21px;
   margin-left: 40px;
   border: 1px solid black;
@@ -419,12 +442,9 @@ body {
   border-radius: 5px;
 }
 
-.test__button-next-red {
-  background-color: #e13434;
-}
-
 .test__button-next-green {
   background-color: #40b640;
+  color: black;
 }
 
 .test__button-next-green:active {
