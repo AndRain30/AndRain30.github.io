@@ -23,12 +23,19 @@ const elemAntworts = document.querySelector('.test__antworts');
 
 const btnConfirm = document.querySelector('.test__button-confirm');
 const btnNext = document.querySelector('.test__button-gray');
+const btnClose = document.querySelector('.test__result__button-close');
+const btnAgain = document.querySelector('.test__result__button-again');
 
 const checks = document.querySelector('.test__checks');
 let numChecks = 0;
 let allChecks = antTest1.length;
+let rightChecks = 0;
 
-function addTest () {
+const testResult = document.querySelector('.test__result');
+const testDiagramma = document.querySelector('.test__result-diagramma');
+const testResultText = document.querySelector('.test__result-percent');
+
+function addTestOrRepeat () {
 
     for (let i = 0; i < antTest1.length; i++) {
         checks.insertAdjacentHTML('afterbegin', '<div class = "test__check-gray"></div>')
@@ -48,9 +55,16 @@ function addTest () {
     elemAntwort2.setAttribute('check-id', 0);
     elemAntwort3.setAttribute('check-id', 0);
     elemAntwort4.setAttribute('check-id', 0);
+
+    for (let i = 0; i < elemAntworts.children.length; i++) {
+        elemAntworts.children[i].classList.remove('test__antwort-green', 'test__antwort-red','test__antwort-gray','test__antwort-picked');
+    }
+    numChecks = 0;
+    numOfQuestion = 0;
+    rightChecks = 0;
 }
 
-addTest();
+addTestOrRepeat();
 
 for (let i = 0; i < elemAntworts.children.length; i++) {
     elemAntworts.children[i].addEventListener('click', () => {
@@ -87,7 +101,8 @@ function showAntworts () {
             ++numChecks;
             btnConfirm.classList.remove('test__button-confirm');
             btnConfirm.classList.add('test__button-confirm-gray');
-            btnConfirm.removeEventListener('click', showAntworts)
+            btnConfirm.removeEventListener('click', showAntworts);
+            rightChecks++;
             break;
         } else if (elemAntworts.children[i].id == 1) {
             elemAntworts.children[i].classList.add('test__antwort-green');
@@ -142,6 +157,39 @@ function showNextQuestions () {
 
         btnNext.classList.remove('test__button-next-green');
         btnNext.removeEventListener('click', showNextQuestions);
+    } else if (btnNext.textContent == "Результат") {
+        testResult.classList.add('test__result_show');
+        showResultTestDiagramma ();
     }
 }
 btnNext.addEventListener('click', showNextQuestions);
+
+btnClose.addEventListener('click', () => {
+    testResult.classList.remove('test__result_show');
+})
+
+btnAgain.addEventListener('click', () => {
+    testResult.classList.remove('test__result_show');
+    while (checks.firstChild) {
+        checks.removeChild(checks.firstChild);
+    }
+    addTestOrRepeat();
+    btnNext.textContent = "Продолжить";
+    btnNext.classList.remove('test__button-next-green');
+    btnConfirm.addEventListener('click', showAntworts);
+    btnConfirm.classList.remove('test__button-confirm-gray');
+    btnConfirm.classList.add('test__button-confirm');
+})
+
+function showResultTestDiagramma () {
+    if (numChecks/rightChecks == Infinity) {
+        testResultText.textContent = `Ты хоть че то читал? : 0 %`;
+    } else if ((rightChecks * 100/numChecks) >= 75) {
+        testResultText.textContent = `Отлично : ${(rightChecks * 100/numChecks).toFixed(0)} %`;
+    } else if ((rightChecks * 100/numChecks) >= 62 && (rightChecks * 100/numChecks) < 75) {
+        testResultText.textContent = `Хорошо : ${(rightChecks * 100/numChecks).toFixed(0)} %`;
+    } else {
+        testResultText.textContent = `Неудовлетворительно : ${(rightChecks * 100/numChecks).toFixed(0)} %`;
+    }
+    
+}
