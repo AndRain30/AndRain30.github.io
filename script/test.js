@@ -34,6 +34,7 @@ let rightChecks = 0;
 const testResult = document.querySelector('.test__result');
 const testDiagramma = document.querySelector('.test__result-diagramma');
 const testResultText = document.querySelector('.test__result-percent');
+const testResultPercentBar = document.querySelector('.test__result-progress');
 
 function addTestOrRepeat () {
 
@@ -96,6 +97,7 @@ function showAntworts () {
             elemAntworts.children[i].classList.add('test__antwort-green');
             btnNext.classList.add('test__button-next-green');
             btnNext.addEventListener('click', showNextQuestions);
+            btnNext.id = 1;
             checks.children[numChecks].classList.add('test__check-green');
             checks.children[numChecks].id = 1;
             ++numChecks;
@@ -112,6 +114,7 @@ function showAntworts () {
             btnNext.addEventListener('click', showNextQuestions);
             checks.children[numChecks].classList.add('test__check-red');
             checks.children[numChecks].id = 1;
+            btnNext.id = 1;
             ++numChecks;
             btnConfirm.classList.remove('test__button-confirm');
             btnConfirm.classList.add('test__button-confirm-gray');
@@ -122,14 +125,16 @@ function showAntworts () {
     }
     if (numChecks == antTest1.length) {
         btnNext.textContent = 'Результат';
+        btnNext.id = 1;
     }
 }
 
 btnConfirm.addEventListener('click', showAntworts)
 
 function showNextQuestions () {
-    if (numOfQuestion <= antTest1.length - 2) {
+    if (numOfQuestion <= antTest1.length - 2 && btnNext.id == 1) {
         numOfQuestion++;
+        btnNext.id = 0;
         answorTest.textContent = answorsTest[numOfQuestion];
         elemAntwort1.textContent = antTest1[numOfQuestion].ant;
         elemAntwort2.textContent = antTest2[numOfQuestion].ant;
@@ -157,9 +162,10 @@ function showNextQuestions () {
 
         btnNext.classList.remove('test__button-next-green');
         btnNext.removeEventListener('click', showNextQuestions);
-    } else if (btnNext.textContent == "Результат") {
+    } else if (btnNext.textContent == "Результат" && btnNext.id == 1) {
         testResult.classList.add('test__result_show');
-        showResultTestDiagramma ();
+        setInterval(showResultTestDiagramma, 500);
+        move ();
     }
 }
 btnNext.addEventListener('click', showNextQuestions);
@@ -170,6 +176,8 @@ btnClose.addEventListener('click', () => {
 
 btnAgain.addEventListener('click', () => {
     testResult.classList.remove('test__result_show');
+    btnNext.id = 0;
+    testResultPercentBar.style.width = 0 + 'px';
     while (checks.firstChild) {
         checks.removeChild(checks.firstChild);
     }
@@ -182,14 +190,29 @@ btnAgain.addEventListener('click', () => {
 })
 
 function showResultTestDiagramma () {
+    testResultPercentBar.textContent = `${(rightChecks * 100/numChecks).toFixed(0)} %`;
     if (numChecks/rightChecks == Infinity) {
-        testResultText.textContent = `Ты хоть че то читал? : 0 %`;
+        testResultText.textContent = `Ты хоть че то читал?`;
     } else if ((rightChecks * 100/numChecks) >= 75) {
-        testResultText.textContent = `Отлично : ${(rightChecks * 100/numChecks).toFixed(0)} %`;
+        testResultText.textContent = `Отлично`;
     } else if ((rightChecks * 100/numChecks) >= 62 && (rightChecks * 100/numChecks) < 75) {
-        testResultText.textContent = `Хорошо : ${(rightChecks * 100/numChecks).toFixed(0)} %`;
+        testResultText.textContent = `Хорошо`;
     } else {
-        testResultText.textContent = `Неудовлетворительно : ${(rightChecks * 100/numChecks).toFixed(0)} %`;
+        testResultText.textContent = `Неудовлетворительно`;
     }
     
+}
+
+function move () {
+    let width = 1;
+    let id = setInterval(frame, 10);
+    function frame () {
+        if (width >= (rightChecks * 100/numChecks.toFixed(0))) {
+            clearInterval(id);
+        } else {
+            width++;
+            testResultPercentBar.style.width = `${width}%`
+            testResultPercentBar.textContent = width * 1 + '%';
+        }
+    }
 }

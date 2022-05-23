@@ -374,15 +374,23 @@ body {
         background: rgb(198, 196, 196);
         margin-top: 30px;
         margin-bottom: 50px;
+        outline: 1px solid black;
+        border-radius: 5px;
+        font-size: 21px;
+        line-height: 35px;
+        color: black;
      }
      &__result-progress {
-        width: 55px;
+        font-size: 18px;
+        width: 0px;
         height: 35px;
         background-color: #4CAF50;
         text-align: center;
         line-height: 35px;
         color: white;
-        
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        overflow: hidden;
     }
     
     &__result__button-again {
