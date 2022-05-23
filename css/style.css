@@ -461,8 +461,9 @@ body {
   border-radius: 5px;
   margin: 0 auto;
   margin-bottom: 15px;
-  transform: translateY(-600px);
+  margin-top: 110px;
   display: none;
+  position: absolute;
 }
 
 .test__result_show {
