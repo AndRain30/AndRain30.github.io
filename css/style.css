@@ -484,15 +484,12 @@ body {
 }
 
 .answors__antwort-visible img {
-  width: 500px;
+  max-width: 75%;
 }
 
 @media (max-width: 1137px) {
   .answors__antwort-visible {
     padding: 13px;
-  }
-  .answors__antwort-visible img {
-    width: 480px;
   }
 }
 
@@ -500,26 +497,17 @@ body {
   .answors__antwort-visible {
     padding: 10px;
   }
-  .answors__antwort-visible img {
-    width: 460px;
-  }
 }
 
 @media (max-width: 1137px) and (max-width: 841px) and (max-width: 767px) {
   .answors__antwort-visible {
     padding: 10px;
   }
-  .answors__antwort-visible img {
-    width: 360px;
-  }
 }
 
 @media (max-width: 1137px) and (max-width: 841px) and (max-width: 767px) and (max-width: 479px) {
   .answors__antwort-visible {
     padding: 8px;
-  }
-  .answors__antwort-visible img {
-    width: 275px;
   }
 }
 

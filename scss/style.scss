@@ -347,26 +347,26 @@ body {
         margin-bottom: 15px;
         overflow: visible;
         img {
-            width: 500px;
+            max-width: 75%;
         }
         @media (max-width: 1137px) {
             img {
-                width: 480px;
+                
             }
             padding: 13px;
             @media (max-width: 841px) {
                 img {
-                    width: 460px;
+                    
                 }
                 padding: 10px;
                 @media (max-width: 767px) {
                     img {
-                        width: 360px;
+                        
                     }
                     padding: 10px;
                     @media (max-width: 479px) {
                         img {
-                            width: 275px;
+                            
                         }
                         padding: 8px;
                         @media (max-width: 320px) {
