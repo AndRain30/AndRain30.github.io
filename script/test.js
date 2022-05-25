@@ -1,25 +1,24 @@
+import {answorsTheme1, answorsTheme2} from './answors.js';
+import {antTest1Theme1, antTest1Theme2} from './antworts1.js';
+import {antTest2Theme1, antTest2Theme2} from './antworts2.js';
+import {antTest3Theme1, antTest3Theme2} from './antworts3.js';
+import {antTest4Theme1, antTest4Theme2} from './antworts4.js';
 
-const answorsTest = [
-    'В каком году вышел ES6?', 
-    'Как называется стандарт, описывающий спецификацию JS?', 
-    'Уберите из вариантов то, что не подходит Javascript-у.'
-];
+const answorsTest = [answorsTheme1, answorsTheme2];
 
-const antTest1 = [ { ant: 'В 2015 году', id: 1}, {ant: 'ECMA-124', id: 0}, {ant: 'Однопоточный', id: 1} ];
-const antTest2 = [ { ant: 'В 2006 году', id: 0}, {ant: 'ECMA-262', id: 1}, {ant: 'Прототипное программирование', id: 0} ];
-const antTest3 = [ { ant: 'В 2019 году', id: 0}, {ant: 'ECMAES-6', id: 0}, {ant: 'Автоматическое управление памятью', id: 0} ];
-const antTest4 = [ { ant: 'В 2016 году', id: 0}, {ant: 'ECMAJs-2015', id: 0}, {ant: 'Динамическая типизация', id: 0} ];
+const antTest1 = [antTest1Theme1, antTest1Theme2];
+const antTest2 = [antTest2Theme1, antTest2Theme2];
+const antTest3 = [antTest3Theme1, antTest3Theme2];
+const antTest4 = [antTest4Theme1, antTest4Theme2];
 
-
-let numOfQuestion = 0;
 const answorTest = document.querySelector('.answor');
 const elemAntwort1 = document.querySelector('.antwort1');
 const elemAntwort2 = document.querySelector('.antwort2');
 const elemAntwort3 = document.querySelector('.antwort3');
 const elemAntwort4 = document.querySelector('.antwort4');
-
-
 const elemAntworts = document.querySelector('.test__antworts');
+let numOfThemes = 0;
+let numOfQuestion = 0;
 
 const btnConfirm = document.querySelector('.test__button-confirm');
 const btnNext = document.querySelector('.test__button-gray');
@@ -28,7 +27,7 @@ const btnAgain = document.querySelector('.test__result__button-again');
 
 const checks = document.querySelector('.test__checks');
 let numChecks = 0;
-let allChecks = antTest1.length;
+let allChecks = antTest1[numOfThemes].length;
 let rightChecks = 0;
 
 const testResult = document.querySelector('.test__result');
@@ -36,21 +35,26 @@ const testDiagramma = document.querySelector('.test__result-diagramma');
 const testResultText = document.querySelector('.test__result-percent');
 const testResultPercentBar = document.querySelector('.test__result-progress');
 
-function addTestOrRepeat () {
+const linkOfThemes = document.querySelector('.menu__links');
 
-    for (let i = 0; i < antTest1.length; i++) {
+function addTestOrRepeat () {
+    while (checks.firstChild) {
+        checks.removeChild(checks.firstChild);
+    }
+    for (let i = 0; i < antTest1[numOfThemes].length; i++) {
         checks.insertAdjacentHTML('afterbegin', '<div class = "test__check-gray"></div>')
     }
-    answorTest.textContent = answorsTest[0];
-    elemAntwort1.textContent = antTest1[0].ant;
-    elemAntwort2.textContent = antTest2[0].ant;
-    elemAntwort3.textContent = antTest3[0].ant;
-    elemAntwort4.textContent = antTest4[0].ant;
+    
+    answorTest.textContent = answorsTest[numOfThemes][0];
+    elemAntwort1.textContent = antTest1[numOfThemes][0].ant;
+    elemAntwort2.textContent = antTest2[numOfThemes][0].ant;
+    elemAntwort3.textContent = antTest3[numOfThemes][0].ant;
+    elemAntwort4.textContent = antTest4[numOfThemes][0].ant;
 
-    elemAntwort1.id = antTest1[0].id;
-    elemAntwort2.id = antTest2[0].id;
-    elemAntwort3.id = antTest3[0].id;
-    elemAntwort4.id = antTest4[0].id;
+    elemAntwort1.id = antTest1[numOfThemes][0].id;
+    elemAntwort2.id = antTest2[numOfThemes][0].id;
+    elemAntwort3.id = antTest3[numOfThemes][0].id;
+    elemAntwort4.id = antTest4[numOfThemes][0].id;
 
     elemAntwort1.setAttribute('check-id', 0);
     elemAntwort2.setAttribute('check-id', 0);
@@ -123,7 +127,7 @@ function showAntworts () {
             elemAntworts.children[i].classList.add('test__antwort-gray');
         } 
     }
-    if (numChecks == antTest1.length) {
+    if (numChecks == antTest1[numOfThemes].length) {
         btnNext.textContent = 'Результат';
         btnNext.id = 1;
     }
@@ -132,19 +136,19 @@ function showAntworts () {
 btnConfirm.addEventListener('click', showAntworts)
 
 function showNextQuestions () {
-    if (numOfQuestion <= antTest1.length - 2 && btnNext.id == 1) {
+    if (numOfQuestion <= antTest1[numOfThemes].length - 2 && btnNext.id == 1) {
         numOfQuestion++;
         btnNext.id = 0;
-        answorTest.textContent = answorsTest[numOfQuestion];
-        elemAntwort1.textContent = antTest1[numOfQuestion].ant;
-        elemAntwort2.textContent = antTest2[numOfQuestion].ant;
-        elemAntwort3.textContent = antTest3[numOfQuestion].ant;
-        elemAntwort4.textContent = antTest4[numOfQuestion].ant;
+        answorTest.textContent = answorsTest[numOfThemes][numOfQuestion];
+        elemAntwort1.textContent = antTest1[numOfThemes][numOfQuestion].ant;
+        elemAntwort2.textContent = antTest2[numOfThemes][numOfQuestion].ant;
+        elemAntwort3.textContent = antTest3[numOfThemes][numOfQuestion].ant;
+        elemAntwort4.textContent = antTest4[numOfThemes][numOfQuestion].ant;
     
-        elemAntwort1.id = antTest1[numOfQuestion].id;
-        elemAntwort2.id = antTest2[numOfQuestion].id;
-        elemAntwort3.id = antTest3[numOfQuestion].id;
-        elemAntwort4.id = antTest4[numOfQuestion].id;
+        elemAntwort1.id = antTest1[numOfThemes][numOfQuestion].id;
+        elemAntwort2.id = antTest2[numOfThemes][numOfQuestion].id;
+        elemAntwort3.id = antTest3[numOfThemes][numOfQuestion].id;
+        elemAntwort4.id = antTest4[numOfThemes][numOfQuestion].id;
     
         elemAntwort1.setAttribute('check-id', 0);
         elemAntwort2.setAttribute('check-id', 0);
@@ -215,4 +219,18 @@ function move () {
             testResultPercentBar.textContent = width * 1 + '%';
         }
     }
+}
+
+for (let i = 0; i < linkOfThemes.children.length; i++) {
+    linkOfThemes.children[i].id = i;
+    linkOfThemes.children[i].addEventListener('click', () => {
+        numOfThemes = linkOfThemes.children[i].id;
+        console.log(numOfThemes);
+        addTestOrRepeat ();
+        btnNext.textContent = "Продолжить";
+        btnNext.classList.remove('test__button-next-green');
+        btnConfirm.addEventListener('click', showAntworts);
+        btnConfirm.classList.remove('test__button-confirm-gray');
+        btnConfirm.classList.add('test__button-confirm');
+    })
 }
